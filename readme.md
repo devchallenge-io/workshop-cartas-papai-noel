@@ -49,14 +49,14 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ```bash
 # Clonar o repositório
-    $ git clone https://github.com/filipeleonelbatista/WorkshopDevChallenge.git
+    $ git clone https://github.com/devchallenge-io/workshop-cartas-papai-noel.git
 
 # Entrar no diretório desejado
-    $ cd cartas-para-o-papai-noel-devchallenge\mobile
+    $ cd workshop-cartas-papai-noel\mobile
     # Ou
-    $ cd cartas-para-o-papai-noel-devchallenge\server
+    $ cd workshop-cartas-papai-noel\server
     # Ou
-    $ cd cartas-para-o-papai-noel-devchallenge\web
+    $ cd workshop-cartas-papai-noel\web
 
      # Instalar as dependências
     $ yarn install
@@ -69,17 +69,17 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 <h3 align="center" >Vamos nos conectar 😉</h3>
 <p align="center">
-  <a href="https://www.linkedin.com/in/filipeleonelbatista/">
+  <a href="https://www.linkedin.com/company/devchallenge/">
     <img alt="LinkedIn" width="22px" src=".github/052-linkedin.svg" />
   </a>&ensp;
-  <a href="mailto:filipe.x2016@gmail.com">
+  <a href="mailto:contato@devchallenge.com.br">
     <img alt="Email" width="22px" src=".github/gmail.svg" />
   </a>&ensp;
-  <a href="https://instagram.com/filipeleonelbatista">
+  <a href="https://instagram.com/devchallenge">
     <img alt="Instagram" width="22px" src=".github/044-instagram.svg" />
   </a>
 </p>
 <br />
 <p align="center">
-    Desenvolvido 💜 por Filipe Batista 
+    Desenvolvido 💜 por <a href="https://instagram.com/filipeleonelbatista"> Filipe Batista </a>
 </p>
