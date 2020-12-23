@@ -3,12 +3,16 @@ import '../styles/pages/list.css';
 import { FiSearch } from 'react-icons/fi';
 import Sidebar from '../components/Sidebar';
 
+import api from '../services/api';
+
 function List() {
 
     const [state, setState] = useState("");
     const [city, setCity] = useState("");
     const [stateList, setStateList] = useState([]);
     const [cityList, setCityList] = useState([]);
+
+    const [letterList, setLetterList] = useState([]);
 
     function buscarEstados() {
         return new Promise(function (resolve, reject) {
@@ -60,6 +64,16 @@ function List() {
         });
     }, [state]);
 
+    async function handleSearch() {
+        const result = await api.get('letters', {
+            params: {
+                city: city,
+                state: state
+            }
+        });
+        setLetterList(result.data);
+    }
+
     return (
         <div id="page-list-letter">
             <Sidebar />
@@ -96,40 +110,54 @@ function List() {
                                     })}
                                 </select>
                             </div>
-                            <button onClick={() => { }} className="confirm-button" type="submit">
+                            <button onClick={handleSearch} className="confirm-button" type="submit">
                                 <FiSearch size={24} color="rgba(0, 0, 0, 0.6)" />
                             </button>
                         </div>
                     </header>
 
-                    <div className="content">
-                        <div className="header">
-                            <div className="name">
-                                Filipe Batista
-                        </div>
-                            <div className="location">
-                                Gravataí-RS
-                        </div>
-                        </div>
-                        <div className="letter">
-                            Quero aprender ReactJS
-                    </div>
-                        <div className="footer">
+                    {
+                        letterList.length === 0
+                        && (
+                            <h3>Nenhuma cartinha foi encontrada.<br />
+                                Tente outra localidade.</h3>
+                        )
 
-                            {'' === ''
-                                ? (
-                                    <a className="red-button" href={`mailto:`}>
-                                        Entrar em contato
-                                    </a>
-                                )
-                                : (
-                                    <a className="red-button" href={`https://wa.me/`}>
-                                        Entrar em contato
-                                    </a>
-                                )
-                            }
-                        </div>
-                    </div>
+                    }
+
+                    {letterList.map((letter, index) => {
+                        return (
+                            <div key={index} className="content">
+                                <div className="header">
+                                    <div className="name">
+                                        {letter.name}
+                                    </div>
+                                    <div className="location">
+                                        {letter.city}-{letter.state}
+                                    </div>
+                                </div>
+                                <div className="letter">
+                                    {letter.letter}
+                                </div>
+                                <div className="footer">
+
+                                    {letter.whatsapp === ''
+                                        ? (
+                                            <a className="red-button" href={`mailto:${letter.email}`}>
+                                                Entrar em contato
+                                            </a>
+                                        )
+                                        : (
+                                            <a className="red-button" href={`https://wa.me/${letter.whatsapp}`}>
+                                                Entrar em contato
+                                            </a>
+                                        )
+                                    }
+                                </div>
+                            </div>
+                        );
+                    })}
+
                 </div>
 
             </main>

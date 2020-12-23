@@ -1,4 +1,9 @@
 import React, { useState, useEffect } from 'react';
+
+import {useHistory} from 'react-router-dom';
+
+import api from '../services/api';
+
 import '../styles/pages/create-letter.css';
 
 import Sidebar from '../components/Sidebar';
@@ -13,6 +18,8 @@ function CreateLetter() {
 
     const [stateList, setStateList] = useState([]);
     const [cityList, setCityList] = useState([]);
+
+    const history = useHistory();
 
     function buscarEstados() {
         return new Promise(function (resolve, reject) {
@@ -75,7 +82,17 @@ function CreateLetter() {
             whatsapp,
         };
 
-        console.log(data);
+        if((!name)||(!state)||(!city)||(!letter)||(!email)){
+            return alert("Existem campos vazios.");
+        }
+
+        try{
+            await api.post('letters', data);
+            history.push('/result', true);
+        }catch(err){
+            history.push('/result', false);
+        }
+
     }
 
     function handleMask() {
